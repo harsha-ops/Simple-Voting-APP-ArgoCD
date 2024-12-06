@@ -18,8 +18,6 @@ git add .
 
 git commit -m "Update kubernetes Manifest"
 
-
-
-git push
+git push "$REPO_URL"
 
 rm -rf /tmp/repo
