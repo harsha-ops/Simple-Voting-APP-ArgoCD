@@ -26,57 +26,10 @@ pipeline {
             }
         }
 
-        stage('Test Kubernetes Connection') {
+        stage('Update k8s maifest') {
             steps {
-                withCredentials([file(credentialsId: 'minikubeconfig', variable: 'KUBECONFIG_FILE')]) {
-                    script {
-                        // Use the kubeconfig to test kubectl connectivity
-                        sh '''
-                        export KUBECONFIG=$KUBECONFIG_FILE
-                        echo "Testing Kubernetes Connection..."
-                        kubectl config view
-                        kubectl get nodes
-                        '''
-                    }
-                }
+                sh "sh ./updatek8smanifest.sh vote-microservice ${DOCKER_IMAGE}"
             }
         }
-
-        stage('Deploy Databases') {
-            steps {
-                withCredentials([file(credentialsId: 'minikubeconfig', variable: 'KUBECONFIG_FILE')]) {
-                    script {
-                        sh '''
-                        export KUBECONFIG=$KUBECONFIG_FILE
-                        echo "Deploying Databases..."
-                        kubectl apply -f ./k8s-manifest/redis-deploy.yml
-                        kubectl apply -f ./k8s-manifest/redis-svc.yml
-                        kubectl apply -f ./k8s-manifest/postgres-deploy.yml
-                        kubectl apply -f ./k8s-manifest/postgres-svc.yml
-                        '''
-                    }
-                }
-            }
-        }
-
-
-
-        stage('Deploy to k8s') {
-            steps {
-                withCredentials([file(credentialsId: 'minikubeconfig', variable: 'KUBECONFIG_FILE')]) {
-                    script {
-                    sh '''
-                    sed -i "s|image: .*$|image: ${DOCKER_IMAGE}|" ./k8s-manifest/vote-microservice-deploy.yml
-                    export KUBECONFIG=$KUBECONFIG_FILE
-                    kubectl apply -f ./k8s-manifest/vote-microservice-deploy.yml
-                    kubectl apply -f ./k8s-manifest/vote-microservice-svc.yml
-                    '''
-                }
-                }
-                
-            }
-        }
-
-
     }
 }
