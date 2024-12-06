@@ -32,7 +32,7 @@ pipeline {
                 
                 sh '''
                 export REPO_URL="https://${GITHUB_TOKEN}@github.com/harsha-ops/Simple-Voting-APP-ArgoCD.git"
-                sh ./updatek8smanifest.sh vote-microservice ${DOCKER_IMAGE}
+                sh updatek8smanifest.sh vote-microservice ${DOCKER_IMAGE}
                 '''
             }
         }
