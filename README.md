@@ -1,10 +1,10 @@
 # Voting App Microservices
 
-This is a simple microservice-based application for voting, built using Docker and deployed to a Kubernetes cluster (Minikube) using Jenkins CI/CD pipelines. The application consists of three microservices: **Vote**, **Worker**, and **Result**.
+This is a simple microservice-based application for voting, built using Docker and deployed to a Kubernetes cluster (Minikube) using Jenkins CI/CD pipelines and ArgoCD for GitOps-based deployments.. The application consists of three microservices: **Vote**, **Worker**, and **Result**.
 
 ## Getting Started
 
-Follow the steps below to get started with building, deploying, and running the Voting App.
+Follow these steps to set up the Voting App with Jenkins and ArgoCD.
 
 ### 1. Write Dockerfiles for Each Microservice
 
@@ -25,7 +25,7 @@ The pipeline will consist of the following stages:
 - **Checkout the source code**: Pull the latest source code from GitHub.
 - **Build the Docker images**: Use the `Dockerfile` to build the Docker image for the respective microservice.
 - **Push the Docker images to Docker Hub**: Push the built Docker image to Docker Hub registry.
-- **Deploy the Docker image to Kubernetes (Minikube)**: Deploy the Docker image from Docker Hub to a running Minikube Kubernetes cluster.
+- **Update Kubernetes Manifests using Shell Script file**
 
 ### 3. Create Jenkins Jobs for Each Microservice
 Once you have the Jenkinsfile ready for each microservice, create a separate Jenkins job for each microservice in the Jenkins dashboard:
@@ -34,13 +34,16 @@ Create a new Pipeline job for each microservice.
 In the job configuration, link the job to the GitHub repository containing the source code.
 Set up the pipeline to point to the corresponding Jenkinsfile in the repository.
 Configure any necessary Jenkins credentials (e.g., for Docker Hub login).
-Trigger the pipeline to build, push, and deploy the Docker images.
+Trigger the pipeline to build, push, and deploy the Docker images and update the k8s manifest files.
 
 ### 4. Set Up Kubernetes (Minikube) Cluster
 Ensure that you have a running Minikube Kubernetes cluster.
 
-### 5. Deploy Microservices to Kubernetes
-After pushing the Docker images to Docker Hub, deploy each microservice to your Minikube Kubernetes cluster by applying the corresponding Kubernetes deployment and service YAML files.
+### 5. Install ArgoCD in Minikube
+
+### 6. Configure ArgoCD application using the CLI or UI
+
+### 7. ArgoCD deploys Microservices to Kubernetes cluster
 
 
 ## Architecture
@@ -55,7 +58,7 @@ After pushing the Docker images to Docker Hub, deploy each microservice to your 
 
 ### Key Notes:
 - Make sure your **Jenkins** server has the necessary plugins installed (e.g., Docker, Kubernetes, GitHub integration).
-- Configure **Docker Hub credentials** and **Kubernetes credentials** in Jenkins for smooth integration.
+- Configure **Docker Hub credentials**, **GitHub Token** and **Kubernetes credentials** in Jenkins for smooth integration.
 
 
 
