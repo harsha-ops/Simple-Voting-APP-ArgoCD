@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: vote
-        image: harsha6798/voting-app-vote-service-ci-image:48
+        image: harsha6798/voting-app-vote-service-ci-image:49
         ports:
         - containerPort: 80
         env:
