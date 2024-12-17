@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: result
-        image: harsha6798/voting-app-result-service-ci-image:9
+        image: harsha6798/voting-app-result-service-ci-image:1
         ports:
         - containerPort: 80
