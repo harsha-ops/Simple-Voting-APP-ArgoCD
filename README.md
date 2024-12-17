@@ -1,6 +1,6 @@
 # Voting App Microservices
 
-This is a simple microservice-based application for voting, built using Docker and deployed to a Kubernetes cluster (Minikube) using Jenkins CI/CD pipelines. The application consists of three microservices: **Vote**, **Worker**, and **Result**.
+This is a simple microservice-based application for voting, built using Docker and deployed to a Kubernetes cluster (Minikube) using Jenkins CI/CD pipelines and ArgoCD for deployment. The application consists of three microservices: **Vote**, **Worker**, and **Result**.
 
 ## Getting Started
 
@@ -25,7 +25,7 @@ The pipeline will consist of the following stages:
 - **Checkout the source code**: Pull the latest source code from GitHub.
 - **Build the Docker images**: Use the `Dockerfile` to build the Docker image for the respective microservice.
 - **Push the Docker images to Docker Hub**: Push the built Docker image to Docker Hub registry.
-- **Deploy the Docker image to Kubernetes (Minikube)**: Deploy the Docker image from Docker Hub to a running Minikube Kubernetes cluster.
+- **Update the manifests repo**: Update the k8smanifest repo using Shell Script.
 
 ### 3. Create Jenkins Jobs for Each Microservice
 Once you have the Jenkinsfile ready for each microservice, create a separate Jenkins job for each microservice in the Jenkins dashboard:
@@ -39,8 +39,13 @@ Trigger the pipeline to build, push, and deploy the Docker images.
 ### 4. Set Up Kubernetes (Minikube) Cluster
 Ensure that you have a running Minikube Kubernetes cluster.
 
-### 5. Deploy Microservices to Kubernetes
-After pushing the Docker images to Docker Hub, deploy each microservice to your Minikube Kubernetes cluster by applying the corresponding Kubernetes deployment and service YAML files.
+### 5. Set up Argo CD
+Install Argo CD on the Kubernetes cluster.
+Set up a Git repository for Argo CD to track the changes in the Kubernetes manifests.
+
+### 6. Deploy Microservices to Kubernetes
+After pushing the Docker images to Docker Hub, update the k8s manifest using the shell script.
+ArgoCD automates the CD process by managing deployments to the Kubernetes cluster.
 
 
 ## Architecture
