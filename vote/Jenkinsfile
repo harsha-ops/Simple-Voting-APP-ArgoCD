@@ -45,7 +45,7 @@ pipeline {
             steps {
                 
                 sh '''
-                export REPO_URL="https://${github_token}@github.com/harsha-ops/Simple-Voting-APP-ArgoCD.git"
+                export REPO_URL="https://${GITHUB_TOKEN}@github.com/harsha-ops/Simple-Voting-APP-ArgoCD.git"
                 sh updatek8smanifest.sh vote-microservice ${DOCKER_IMAGE}
                 '''
             }
