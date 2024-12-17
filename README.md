@@ -60,7 +60,7 @@ ArgoCD automates the CD process by managing deployments to the Kubernetes cluste
 
 ### Key Notes:
 - Make sure your **Jenkins** server has the necessary plugins installed (e.g., Docker, Kubernetes, GitHub integration).
-- Configure **Docker Hub credentials** and **Kubernetes credentials** in Jenkins for smooth integration.
+- Configure **Docker Hub credentials** and **GitHub credentials** in Jenkins for smooth integration.
 
 
 
