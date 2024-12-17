@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: worker
-        image: harsha6798/voting-app-worker-service-ci-image:7
+        image: harsha6798/voting-app-worker-service-ci-image:1
         ports:
         - containerPort: 80
         env:
