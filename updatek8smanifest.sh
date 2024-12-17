@@ -2,7 +2,7 @@
 
 set -x
 
-REPO_URL="https://${GITHUB_TOKEN}@github.com/harsha-ops/Simple-Voting-APP-ArgoCD.git"
+REPO_URL="https://${github_token}@github.com/harsha-ops/Simple-Voting-APP-ArgoCD.git"
 
 git clone "$REPO_URL" /tmp/repo
 
